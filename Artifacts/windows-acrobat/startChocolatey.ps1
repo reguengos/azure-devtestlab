@@ -5,14 +5,16 @@
     [string] $packageList
 )
 
-Function Get-TempPassword() {
+Function Get-TempPassword() 
+{
     Param(
-        [int]$length=10,
-        [string[]]$sourcedata
+        [int] $length=10,
+        [string[]] $sourcedata
     )
 
-    For ($loop=1; $loop –le $length; $loop++) {
-            $tempPassword+=($sourcedata | GET-RANDOM)
+    For ($loop=1; $loop –le $length; $loop++) 
+    {
+        $tempPassword+=($sourcedata | GET-RANDOM)
     }
 
     return $tempPassword
@@ -42,11 +44,7 @@ $credential = New-Object System.Management.Automation.PSCredential("$env:COMPUTE
 $command = $PSScriptRoot + "\ChocolateyPackageInstaller.ps1"
 
 # Run Chocolatey as the artifactInstaller user
-Enable-PSRemoting –Force -SkipNetworkProfileCheck
-
-# Ensure that current process can run scripts. 
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force 
-
+Enable-PSRemoting -Force -SkipNetworkProfileCheck
 Invoke-Command -FilePath $command -Credential $credential -ComputerName $env:COMPUTERNAME -ArgumentList $packageList
 
 # Delete the artifactInstaller user

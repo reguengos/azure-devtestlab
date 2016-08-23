@@ -1,0 +1,18 @@
+{
+       "$schema": "https://raw.githubusercontent.com/reguengos/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+  
+
+  "title": "SoapUi",
+  "description": "Installs Acrobat using the Chocolatey package manager",
+  "tags": [
+    "Windows",
+    "Acrobat"
+    
+  ],
+  "iconUri": "https://raw.githubusercontent.com/reguengos/azure-devtestlab/master/Artifacts/windows-acrobat/adobereader.2015.007.20033.png",
+  "targetOsType": "Windows",
+  "runCommand": {
+    "commandToExecute": "powershell.exe -executionpolicy bypass -File startChocolatey.ps1 -PackageList adobereader"
+
+  }
+}
